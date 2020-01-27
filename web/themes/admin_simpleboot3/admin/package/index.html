@@ -1,0 +1,64 @@
+<include file="public@header" />
+<style>
+td{
+    word-break:break-all;
+}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a >列表</a></li>
+			<li><a href="{:url('package/upload')}">上传IPA</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th style="text-align: center">ID</th>
+						<th>应用名称</th>
+						<th style="text-align: center" width="6%">图标</th>
+						<th style="text-align: center">版本</th>
+						<th width="12%">BundleID</th>
+						<th>下载地址</th>
+						<th width="8%">简介</th>
+						<th style="text-align: center">签发量</th>
+						<th style="text-align: center">下载量</th>
+						<th style="text-align: center" width="8%">创建人</th>
+						<th style="text-align: center" width="8%">创建时间</th>
+						<th style="text-align: center">{:lang('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="list" item="vo">
+					<tr>
+						<td align="center">{$vo['id']}</td>
+						<td>{$vo['name']}</td>
+						<td align="center"><img src="{$site_info['aliyun_http']}/{$vo['icon']}" style="width:40px;"></td>
+						<td align="center">{$vo['version']}</td>
+						<td>{$vo['bundle_identifier']}</td>
+						<td>{$vo['downurl']} <i class="fa fa-qrcode imgtip" style="cursor:pointer" value="{$vo['qr']}"></i></td>
+						<td>{$vo['summary']}</td>
+						<td align="center">{$vo['issue_count']}</td>
+						<td align="center">{$vo['count']}</td>
+						<td align="center">{$userlist[$vo['create_id']]['user_login']|default=''}</td>
+						<td align="center">{$vo['create_time']}</td>
+						<td style="text-align: center;">
+							<a class="btn btn-xs btn-primary" href='{:url("package/update",array("id"=>$vo["id"]))}'>下载码</a>
+							<a class="btn btn-xs btn-primary" href='{:url("package/uploadAndroid",array("id"=>$vo["id"]))}'>应用合并</a>
+							<a class="btn btn-xs btn-primary" href='{:url("package/uploadIcon",array("id"=>$vo["id"]))}'>设置图标</a>
+                            <a class="btn btn-xs btn-primary" href='{:url("package/edit",array("id"=>$vo["id"]))}'>{:lang('UPDATE')}</a>
+							<a class="btn btn-xs btn-danger js-ajax-delete" href="{:url('package/del',array('id'=>$vo['id']))}">{:lang('DELETE')}</a>
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="pagination">{$page}</div>
+
+		</form>
+	</div>
+    <div id="enlarge_images" style="position:fixed;display:none;z-index:2;"></div>
+	<script src="__STATIC__/js/admin.js?90941"></script>
+</body>
+</html>

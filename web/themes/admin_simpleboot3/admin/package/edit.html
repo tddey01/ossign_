@@ -1,0 +1,45 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li ><a href="{:url('package/index')}">列表</a></li>
+			<li class="active"><a >{:lang('UPDATE')}</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{$site_info['api_http']}/package/uploadPackage" enctype="multipart/form-data">
+                        
+            <div class="form-group">
+				<label for="input-summary" class="col-sm-2 control-label">应用名称</label>
+				<div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" id="input-name" disabled name="name" value="{$data.name}">
+				</div>
+			</div>
+
+            <div class="form-group">
+				<input type="hidden" id="createId" name="createId" value="{$data.create_id}">
+				<label for="input-p8" class="col-sm-2 control-label"><span class="form-required">*</span>IPA文件</label>
+				<div class="col-md-6 col-sm-10">
+                    <input type="file" class="form-control" id="input-id" required name="file">
+				</div>
+			</div>
+            
+            <div class="form-group">
+				<label for="input-summary" class="col-sm-2 control-label"><span class="form-required">*</span>简介说明</label>
+				<div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" id="input-summary" name="summary" value="{$data.summary}">
+				</div>
+			</div>
+            
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="hidden" id="nonceStr" name="nonceStr" value="{$data.no}">
+					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+					<a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+				</div>
+			</div>
+            
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

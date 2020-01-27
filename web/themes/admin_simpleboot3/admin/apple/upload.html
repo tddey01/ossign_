@@ -1,0 +1,37 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li ><a href="{:url('apple/index')}">列表</a></li>
+			<li class="active"><a >P12上传</a></li>
+		</ul>
+
+		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('apple/uploadPost')}" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="input-id" class="col-sm-2 control-label"><span class="form-required">*</span>Apple开发者账号ID</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="input-id" readonly name="id" value="{$id}">
+				</div>
+			</div>
+            
+            <div class="form-group">
+				<label for="input-p8" class="col-sm-2 control-label"><span class="form-required">*</span>P12文件</label>
+				<div class="col-md-6 col-sm-10">
+                    <input type="file" class="form-control" id="input-id" name="file">
+				</div>
+			</div>
+
+            
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+					<a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+				</div>
+			</div>
+            
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

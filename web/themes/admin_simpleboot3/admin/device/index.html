@@ -1,0 +1,45 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a >列表</a></li>
+			<li><a href="{:url('device/upload')}">添加</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th style="text-align: center">ID</th>
+						<th style="text-align: center">设备UDID</th>
+						<th style="text-align: center">使用账号(ID)</th>
+						<th style="text-align: center">使用安装包</th>
+						<th style="text-align: center">设备ID</th>
+						<th style="text-align: center">创建时间</th>
+						<th style="text-align: center">{:lang('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="list" item="vo">
+					<tr>
+						<td align="center">{$vo['id']}</td>
+						<td align="center">{$vo['udid']}</td>
+						<td align="center">{$applist[$vo['apple_id']]['account']|default=''} ({$vo['apple_id']})</td>
+						<td>{$vo['package_ids']}</td>
+						<td align="center">{$vo['device_id']}</td>
+						<td align="center">{$vo['creat_time']}</td>
+						<td align="center">	
+                            <!-- <a class="btn btn-xs btn-primary" href='{:url("device/edit",array("id"=>$vo["id"]))}'>{:lang('EDIT')}</a> -->
+							<a class="btn btn-xs btn-danger js-ajax-delete" href="{:url('device/del',array('id'=>$vo['id']))}">{:lang('DELETE')}</a>
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="pagination">{$page}</div>
+
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

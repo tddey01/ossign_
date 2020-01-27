@@ -1,0 +1,44 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:url('UserScoreLog/index')}">列表</a></li>
+		</ul>
+        <!--<form class="well form-inline margin-top-20" method="get" action="{:url('User/index')}">
+            用户名:
+            <input type="text" class="form-control" name="user_login" style="width: 120px;" value="{:input('request.user_login/s','')}" placeholder="请输入{:lang('USERNAME')}">
+            邮箱:
+            <input type="text" class="form-control" name="user_email" style="width: 120px;" value="{:input('request.user_email/s','')}" placeholder="请输入{:lang('EMAIL')}">
+            <input type="submit" class="btn btn-primary" value="搜索" />
+            <a class="btn btn-danger" href="{:url('UserScoreLog/index')}">清空</a>
+        </form>-->
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th width="50" style="text-align: center;">ID</th>					
+					<th style="text-align: center;">设备UDID</th>
+					<th style="text-align: center;">应用名称</th>
+					<th style="text-align: center;">扣除点数</th>
+					<th style="text-align: center;">扣点会员</th>
+					<th style="text-align: center;">扣除时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<foreach name="userscore" item="vo">
+				<tr>
+					<td style="text-align: center;">{$vo.id}</td>
+					<td style="text-align: center;">{$vo.action}</td>
+					<td style="text-align: center;">{$packagelist[$vo['package_id']]['name']|default='包不存在'} ({$vo['package_id']})</td>
+					<td style="text-align: center;">{$vo.coin}</td>
+					<td style="text-align: center;">{$userlist[$vo['user_id']]['user_login']|default='会员不存在'} ({$vo['user_id']})</td>
+					<td style="text-align: center;">{$vo['create_time']}</td>
+				</tr>
+				</foreach>
+			</tbody>
+		</table>
+		<div class="pagination">{$page}</div>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>

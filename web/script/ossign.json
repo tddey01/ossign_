@@ -1,0 +1,9 @@
+{
+  "apps" : [ 
+    {
+      "name"        : "ossign",
+      "script"      : "java",
+      "args"        : ["-jar","ossign-0.0.1.jar"],
+      "merge_logs"  : true
+    } 
+  ]

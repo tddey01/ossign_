@@ -1,0 +1,1 @@
+openssl smime -sign -in $1 -out $2 -signer server.crt -inkey server.key -certfile ca-bunde.pem -outform der -nodetach

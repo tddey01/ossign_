@@ -1,0 +1,57 @@
+<include file="public@header" />
+<style>
+td{
+    word-break: break-all;
+}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a >列表</a></li>
+			<li><a href="{:url('apple/add')}">添加</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Apple开发者账号</th>
+						<th style="text-align: center">剩余设备数</th>
+						<th style="text-align: center" width="18%">ISS ID</th>
+						<th style="text-align: center">Key ID</th>
+						<th width="10%">P12</th>
+						<th style="text-align: center">授权证书ID</th>
+						<th style="text-align: center">通配证书ID</th>
+						<th style="text-align: center">创建时间</th>
+						<th style="text-align: center" width="10%">{:lang('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="list" item="vo">
+					<tr>
+						<td>{$vo['id']}</td>
+						<td>{$vo['account']}</td>
+						<td align="center">{$vo['count']}</td>
+						<td align="center">{$vo['iss']}</td>
+						<td align="center">{$vo['kid']}</td>
+						<td>{$site_info['aliyun_http']}/{$vo['p12']}</td>
+						<td align="center">{$vo['cerId']}</td>
+						<td align="center">{$vo['bundleIds']}</td>
+						<td align="center">{$vo['create_time']}</td>
+						<td align="center">	
+                            <!--<a class="btn btn-xs btn-primary" href='{:url("apple/edit",array("id"=>$vo["id"]))}'>{:lang('EDIT')}</a>-->
+                            <a class="btn btn-xs btn-primary" href='{:url("apple/upload",array("id"=>$vo["id"]))}'>上传P12</a>
+							<a class="btn btn-xs btn-danger js-ajax-delete" href="{:url('apple/del',array('id'=>$vo['id']))}">{:lang('DELETE')}</a>
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="pagination">{$page}</div>
+
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+</body>
+</html>
